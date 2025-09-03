@@ -1,0 +1,70 @@
+= new OK virtual machine assembly language - kidasm (or just "kid")
+
+== Basic assembly opcodes:
+
+- `ADD` 
+- `AND`
+- `XOR` 
+- `SHF` 
+- `CMP` 
+- `SWP` 
+- `STR` 
+- `LOD` 
+- `DUP` 
+- `DRP` 
+- `PSH` 
+- `POP` 
+- `JMP` 
+- `INT`
+- `NOP`
+
+These can be optionally suffixed by a number from 1-4 to represent what size 
+integers the word operates on (1, 2, 3, or 4 bytes).
+
+== Hex literals:
+
+`#` followed by (case-insensitive) hex digits. Must be either 2, 4, 6, or 8 digits.
+
+== Halt keyword
+
+The `HLT` keyword can be used like an instruction that stops execution of the
+CPU- being represented in bytecode as a 0-byte, which terminates execution.
+
+It cannot make use of any skip flags or number suffixes.
+
+== comments
+
+Comments are like in FORTH; any text between `(` and `)` gets ignored.
+
+== Skip flag suffix
+
+All instructions can optionally have a "?" suffix at the very end, with the
+exception of `HLT`. An example:
+`#ff?`
+`ADD4?`
+
+== labels
+
+`.label` declares a label, and `@label` pushes that label's value to the stack.
+
+Labels are accessible throughout the entirety of the file, even before they have
+been declared.
+
+== macros
+
+New words can be defined with macros:
+
+`%def INCREMENT 1 ADD %end`
+
+Labels declared within the `%def` get mangled.
+
+The following rules govern what characters can be used in user-defined words:
+
+- They cannot start with `#`, `@`, `.`, or `%`
+- They cannot contain `(` or `)`
+- They cannot contain white space
+- They cannot be an existing instruction
+
+Macros are accessible at any point *after* their definition.
+
+Macros cannot be defined within the bodies of other macros.
