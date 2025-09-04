@@ -1,4 +1,6 @@
-= new OK virtual machine assembly language - kidasm (or just "kid")
+= new OK virtual machine assembly language - mkasm (or just "MK")
+
+Note: `MK` is pronounced "mark".
 
 == Basic assembly opcodes:
 

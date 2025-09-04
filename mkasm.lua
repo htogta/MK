@@ -382,7 +382,7 @@ local input = arg[1]
 local output = arg[2] or "out.okb"
 
 local function print_usage()
-  io.stdout:write("Usage: lua kidasm.lua input.kid [output.okb]\n")
+  io.stdout:write("Usage: lua mkasm.lua input.kid [output.okb]\n")
 end
 
 if not input then
